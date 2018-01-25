@@ -32,16 +32,16 @@ public class Square {
 
         for (int number = 1; number<=size; number++){
             if (numbers.contains(number)) continue;
-            Cell nomanee = new Cell();
+            Cell nominee = new Cell();
             Row row = new Row(size,false);
             Row col = new Row(size,true);
             boolean sameRow = false;
             boolean sameCol = false;
-            int nomanees=0;
+            int nominees=0;
             for (Cell cell:cells){
                 if (cell.getPossibleNumbers().contains(number)){
-                    if (nomanees==0){
-                      nomanee = cell;
+                    if (nominees==0){
+                      nominee = cell;
                       row = cell.getRow();
                       col = cell.getCol();
                       sameRow=true;
@@ -51,18 +51,18 @@ public class Square {
                         if (sameRow) sameRow = cell.getRow().isEqual(row);
                         if (sameCol) sameCol = cell.getCol().isEqual(col);
                     }
-                    nomanees++;
+                    nominees++;
                 }
             }
-            if (nomanees==0) continue;
-            if (nomanees==1){
-                nomanee.changeTo(number);
+            if (nominees==0) continue;
+            if (nominees==1){
+                nominee.changeTo(number);
             }
             else if (sameRow){
 
                 for (Cell cell:row.cells){
 
-                    if (!cell.getSquare().isEqual(nomanee.getSquare())){
+                    if (!cell.getSquare().isEqual(nominee.getSquare())){
                         cell.remove(Integer.valueOf(number));
 
                     }
@@ -70,7 +70,7 @@ public class Square {
             }
             else if (sameCol){
                 for (Cell cell:col.cells){
-                    if (!cell.getSquare().isEqual(nomanee.getSquare())){
+                    if (!cell.getSquare().isEqual(nominee.getSquare())){
                         cell.remove(Integer.valueOf(number));
                     }
                 }
